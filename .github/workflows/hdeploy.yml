@@ -1,9 +1,9 @@
-name: Push Container to Heroku
+name: Deploy to Heroku
 
 on:
   push:
     branches:
-      - development
+      - master
 
 jobs:
   build:
@@ -13,5 +13,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@master
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "naked-ruby-blog"
-          heroku_email: "geromorla@yahoo.com.ar"
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
