@@ -12,9 +12,11 @@
       <tr>
         <td><%= post.id %></td>
         <td><%= post.title %></td>
-        <td><%= link_to 'Show', post %></td> 
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', post %></td>
+        <% if user_signed_in? && current_user.id == post.user_id %>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +26,8 @@
 
 <%= link_to 'New Post', new_post_path %>
 
+<% if user_signed_in? %>
 <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to 'Login', new_user_session_path %>
+<% end %>

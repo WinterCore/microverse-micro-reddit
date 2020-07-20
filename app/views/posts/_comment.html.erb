@@ -1,0 +1,8 @@
+<div style="border: 1px solid black; padding: 10px;">
+  <h4><%= comment.user.username %></h4>
+  <p><%= comment.body %></p>
+  <time><%= time_ago_in_words comment.created_at %></time>
+  <% if current_user.id == comment.user_id %>
+    <%= link_to 'Delete Comment', post_comment_path(@post, comment), method: :delete %>
+  <% end %>
+</div>
