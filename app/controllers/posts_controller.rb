@@ -1,12 +1,18 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :relogin, only: [:new, :create, :update, :edit, :destroy]
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
   end
-
+  
+  def relogin
+    unless user_signed_in? 
+      redirect_to posts_path
+      false
+    end
+  end
   # GET /posts/1
   # GET /posts/1.json
   def show

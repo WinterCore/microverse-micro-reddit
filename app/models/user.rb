@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :timeoutable, :registerable
+  devise :database_authenticatable, :timeoutable, :registerable, :recoverable
 
   validates :username, :email, :password, presence: true
   validates :email, uniqueness: true
